@@ -1,19 +1,20 @@
 import sys
 import sqlite3
-from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QDialog, QDialogButtonBox, QSpinBox
 from PyQt5.QtSql import QSqlDatabase, QSqlQueryModel
+from UI.addEditCoffeeForm import Ui_Dialog
+from UI.main import Ui_MainWindow
 
-con = sqlite3.connect('coffee.sqlite')
+con = sqlite3.connect('data/coffee.sqlite')
 cur = con.cursor()
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
-        super(MainWindow, self).__init__()
-        uic.loadUi('main.ui', self)
+        super().__init__()
+        self.setupUi(self)
         self.db = QSqlDatabase.addDatabase('QSQLITE')
-        self.db.setDatabaseName('coffee.sqlite')
+        self.db.setDatabaseName('data/coffee.sqlite')
         self.db.open()
         self.model = QSqlQueryModel(self)
         self.request = '''SELECT Coffee.ID, Sorts.name as "Сорт", Roasting.title as 
@@ -38,10 +39,10 @@ class MainWindow(QMainWindow):
         self.d.show()
 
 
-class Dialog(QDialog):
+class Dialog(QDialog, Ui_Dialog):
     def __init__(self):
-        super(Dialog, self).__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        super().__init__()
+        self.setupUi(self)
         self.buttonBox.accepted.connect(self.add)
 
     def add(self):
