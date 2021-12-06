@@ -10,6 +10,11 @@
     <height>685</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Кофе</string>
   </property>
@@ -17,6 +22,20 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTableView" name="tableView"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="add">
+      <property name="text">
+       <string>Добавить кофе</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="reload_btn">
+      <property name="text">
+       <string>Перезагрузка</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
